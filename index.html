@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mysteriegenerator</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 500px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Mysteriegenerator</h1>
+
+<h2>Skapa nytt mysterium</h2>
+
+<input id="gameName" placeholder="Spelnamn">
+
+<input id="playerCount" type="number" placeholder="Antal deltagare">
+
+<button onclick="createGame()">Skapa spel</button>
+
+<div id="result"></div>
+
+<script>
+function createGame() {
+    const gameName = document.getElementById("gameName").value;
+    const playerCount = document.getElementById("playerCount").value;
+
+    if (!gameName || !playerCount) {
+        alert("Fyll i alla fält");
+        return;
+    }
+
+    document.getElementById("result").innerText =
+        `Spelet "${gameName}" med ${playerCount} deltagare har skapats!`;
+}
+</script>
+
+</body>
+</html>
