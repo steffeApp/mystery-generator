@@ -1,71 +1,223 @@
 <!DOCTYPE html>
+
 <html lang="sv">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mysteriegenerator</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 500px;
-            margin: auto;
-            padding: 20px;
-        }
+<title>Mysteriegenerator</title>
 
-        h1 {
-            text-align: center;
-        }
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        input {
-            width: 100%;
-            padding: 12px;
-            margin-top: 10px;
-            margin-bottom: 15px;
-            box-sizing: border-box;
-        }
+body {
+    background: #111827;
+    color: #ffffff;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
 
-        button {
-            width: 100%;
-            padding: 12px;
-            font-size: 16px;
-            cursor: pointer;
-        }
+.container {
+    width: 100%;
+    max-width: 450px;
+}
 
-        #result {
-            margin-top: 20px;
-            font-weight: bold;
-            text-align: center;
-        }
-    </style>
+.logo {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 25px;
+}
+
+.logo h1 {
+    font-size: 2rem;
+}
+
+.logo p {
+    color: #9ca3af;
+    margin-top: 8px;
+}
+
+.card {
+    background: #1f2937;
+    border-radius: 18px;
+    padding: 24px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+}
+
+.card h2 {
+    margin-bottom: 20px;
+    font-size: 1.4rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #d1d5db;
+    font-size: 0.95rem;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 14px;
+    border-radius: 12px;
+    border: 1px solid #374151;
+    background: #111827;
+    color: white;
+    font-size: 16px;
+    margin-bottom: 18px;
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-color: #3b82f6;
+}
+
+button {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 12px;
+    background: #2563eb;
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1d4ed8;
+}
+
+.result {
+    margin-top: 20px;
+    background: #111827;
+    border-radius: 12px;
+    padding: 18px;
+    text-align: center;
+}
+
+.game-id {
+    font-size: 1.6rem;
+    font-weight: bold;
+    margin-top: 10px;
+    color: #60a5fa;
+}
+
+.hidden {
+    display: none;
+}
+
+.status {
+    margin-top: 10px;
+    color: #9ca3af;
+}
+</style>
+
 </head>
+
 <body>
 
-<h1>Mysteriegenerator</h1>
+<div class="container">
 
-<h2>Skapa nytt mysterium</h2>
+```
+<div class="logo">
+    <h1>🕵️ Mysteriegenerator</h1>
+    <p>Skapa personliga mordgåtor</p>
+</div>
 
-<input id="gameName" placeholder="Spelnamn">
+<div class="card">
 
-<input id="playerCount" type="number" placeholder="Antal deltagare">
+    <h2>Skapa nytt spel</h2>
 
-<button onclick="createGame()">Skapa spel</button>
+    <label>Spelnamn</label>
+    <input
+        id="gameName"
+        placeholder="Exempel: Familjen Hanssons mysterium">
 
-<div id="result"></div>
+    <label>Antal deltagare</label>
+    <select id="playerCount">
+        <option value="">Välj antal</option>
+        <option>2</option>
+        <option>3</option>
+        <option selected>4</option>
+        <option>5</option>
+        <option>6</option>
+        <option>7</option>
+        <option>8</option>
+        <option>9</option>
+        <option>10</option>
+    </select>
+
+    <button onclick="createGame()">
+        Skapa spel
+    </button>
+
+    <div id="result" class="result hidden">
+
+        <h3>Spelet har skapats!</h3>
+
+        <div class="game-id" id="gameId"></div>
+
+        <div class="status">
+            0 av <span id="playerTarget"></span> deltagare registrerade
+        </div>
+
+    </div>
+
+</div>
+```
+
+</div>
 
 <script>
-function createGame() {
-    const gameName = document.getElementById("gameName").value;
-    const playerCount = document.getElementById("playerCount").value;
 
-    if (!gameName || !playerCount) {
+function generateGameId() {
+    const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+    let result = "";
+
+    for(let i = 0; i < 6; i++) {
+        result += chars.charAt(
+            Math.floor(Math.random() * chars.length)
+        );
+    }
+
+    return result;
+}
+
+function createGame() {
+
+    const gameName =
+        document.getElementById("gameName").value;
+
+    const playerCount =
+        document.getElementById("playerCount").value;
+
+    if(!gameName || !playerCount) {
         alert("Fyll i alla fält");
         return;
     }
 
-    document.getElementById("result").innerText =
-        `Spelet "${gameName}" med ${playerCount} deltagare har skapats!`;
+    const gameId = generateGameId();
+
+    document.getElementById("gameId").innerText =
+        gameId;
+
+    document.getElementById("playerTarget").innerText =
+        playerCount;
+
+    document.getElementById("result")
+        .classList.remove("hidden");
 }
+
 </script>
 
 </body>
