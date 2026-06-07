@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mystery Generator</title>
+
+    <link rel="stylesheet" href="css/generate.css">
+</head>
+<body>
+
+    <div class="container">
+
+        <h1>Mystery Generator</h1>
+
+        <p>
+            Klistra in participant.json nedan och klicka på
+            "Lägg till deltagare".
+        </p>
+
+        <textarea
+            id="jsonInput"
+            placeholder="Klistra in participant.json här..."></textarea>
+
+        <button onclick="addParticipant()">
+            Lägg till deltagare
+        </button>
+
+        <h2>Deltagare</h2>
+
+        <ul id="participantList"></ul>
+
+        <button
+            class="generate-btn"
+            onclick="generateMystery()">
+
+            Generera mysterium
+
+        </button>
+
+        <div id="result"></div>
+
+    </div>
+
+    <script src="js/generate.js"></script>
+
+</body>
+</html>

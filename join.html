@@ -1,197 +1,61 @@
 <!DOCTYPE html>
-
 <html lang="sv">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deltagarprofil</title>
 
-<title>Deltagarprofil</title>
-
-<style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
-
-body{
-background:#111827;
-color:white;
-font-family:-apple-system,BlinkMacSystemFont,sans-serif;
-padding:20px;
-}
-
-.container{
-max-width:600px;
-margin:auto;
-}
-
-.card{
-background:#1f2937;
-padding:24px;
-border-radius:18px;
-margin-top:20px;
-}
-
-h1{
-text-align:center;
-margin-top:20px;
-}
-
-.subtitle{
-text-align:center;
-color:#9ca3af;
-margin-top:10px;
-}
-
-.section-title{
-margin-top:25px;
-margin-bottom:15px;
-font-size:1.1rem;
-}
-
-label{
-display:block;
-margin-bottom:8px;
-color:#d1d5db;
-}
-
-input,
-select{
-width:100%;
-padding:14px;
-border-radius:12px;
-border:1px solid #374151;
-background:#111827;
-color:white;
-margin-bottom:16px;
-font-size:16px;
-}
-
-.checkbox-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:10px;
-}
-
-.checkbox-grid label{
-display:flex;
-align-items:center;
-gap:8px;
-background:#111827;
-padding:10px;
-border-radius:10px;
-cursor:pointer;
-}
-
-button{
-width:100%;
-padding:16px;
-background:#2563eb;
-color:white;
-border:none;
-border-radius:12px;
-font-size:16px;
-font-weight:bold;
-margin-top:20px;
-}
-
-.success{
-display:none;
-margin-top:20px;
-background:#111827;
-padding:15px;
-border-radius:12px;
-text-align:center;
-}
-
-</style>
-
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
 
 <div class="container">
 
-<h1>🕵️ Deltagarprofil</h1>
+    <div class="card">
 
-<p class="subtitle">
-Fyll i dina uppgifter till mysteriet
-</p>
+        <div class="step-info">
+            <span id="stepText">Steg 1 av 5</span>
+        </div>
 
-<div class="card">
+        <div class="progress">
+            <div id="progressBar" class="progress-bar"></div>
+        </div>
 
-<div class="section-title">
-Grunduppgifter
-</div>
+        <div id="stepContent">
 
-<label>Foto</label> <input type="file" accept="image/*">
+            <h2>Grunduppgifter</h2>
 
-<label>Förnamn</label> <input type="text">
+            <p>
+                Här kommer vi senare lägga foto, namn,
+                ålder och sysselsättning.
+            </p>
 
-<label>Efternamn</label> <input type="text">
+        </div>
 
-<label>E-post</label> <input type="email">
+        <div class="buttons">
 
-<label>Ålder</label> <input type="number">
+            <button
+                id="backBtn"
+                class="secondary"
+                onclick="previousStep()"
+                disabled>
+                Tillbaka
+            </button>
 
-<label>Sysselsättning</label> <input
-type="text"
-placeholder="Ex. Chef på IT-företag eller Årskurs 8">
+            <button
+                id="nextBtn"
+                onclick="nextStep()">
+                Nästa
+            </button>
 
-<div class="section-title">
-Relationer
-</div>
+        </div>
 
-<label>Partner</label> <input type="text">
-
-<label>Partnerstatus</label> <select>
-
-<option>Singel</option>
-<option>Gift</option>
-<option>Sambo</option>
-<option>Flickvän</option>
-<option>Pojkvän</option>
-</select>
-
-<label>Mamma</label> <input type="text">
-
-<label>Pappa</label> <input type="text">
-
-<label>Syskon</label> <input type="text">
-
-<label>Bästa vän</label> <input type="text">
-
-<div class="section-title">
-Personlighet
-</div>
-
-<div class="checkbox-grid">
-
-<label><input type="checkbox"> Analytisk</label> <label><input type="checkbox"> Kreativ</label> <label><input type="checkbox"> Social</label> <label><input type="checkbox"> Humoristisk</label> <label><input type="checkbox"> Tävlingsinriktad</label> <label><input type="checkbox"> Organiserad</label> <label><input type="checkbox"> Impulsiv</label> <label><input type="checkbox"> Nyfiken</label>
+    </div>
 
 </div>
 
-<button onclick="submitProfile()">
-Skicka profil
-</button>
-
-<div id="success" class="success">
-✅ Profil registrerad
-</div>
-
-</div>
-
-</div>
-
-<script>
-
-function submitProfile() {
-document.getElementById("success").style.display="block";
-}
-
-</script>
+<script src="js/app.js"></script>
 
 </body>
 </html>
